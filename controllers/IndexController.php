@@ -1,6 +1,6 @@
 <?php
 
-class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Front_Action {
+class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Front_Action {
 
     /**
      * A controller function that dumps pretty much everything for a post

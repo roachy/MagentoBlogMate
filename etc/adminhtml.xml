@@ -1,0 +1,17 @@
+<!-- File: app/code/community/Magentotutorial/Blogmate/etc/adminhtml.xml -->
+
+<config>
+    <menu>
+        <blogmate translate="title" module="magentotutorial_blogmate">
+            <title> Blogmate </title>
+            <sort_order>1</sort_order>
+            <children>
+                <new_post>
+                    <title> Create a new post </title>
+                    <sort_order>1</sort_order>
+                    <action> adminhtml/blogmate/index </action>
+                </new_post>
+            </children>
+        </blogmate>
+    </menu>
+</config>

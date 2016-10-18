@@ -15,7 +15,8 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
         $blog_post->load($params['id']); // Load all data assigned to that ID (Will only work when hooked up to a DB)
 
         $outputData = $blog_post->getData(); // Assign the data to a variable
-        var_dump($outputData); // Dump it into the website so we can what's going on under the bonnet
+
+        return $outputData;
     }
 
     /**
@@ -42,7 +43,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
 
         foeach($posts as $post){ // Foreach row we find in the database
             echo '<h3>'.$post->getTitle().'</h3>'; // Echo the title into a h3 tag
-            echo $blogpost->getPost(); // Ask Asif about this function
+            echo nl2br($blogpost->getPost());
         }
 
     }
@@ -89,7 +90,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
 
         if(!count($post_collection))
         {
-            echo("There is nothing here! Please <a href='http://example.com/blogmate/index/createNewPost'>create your first post </a>");
+            echo("Beam me up Scotty, there's nothing here");
         }else{
             echo('There are currently'.count($post_collection).' that have been created');
         }
@@ -100,12 +101,20 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function used to view a blog post on a fresh page
      */
 
-    public function viewPost()
+    public function viewPostAction()
     {
         $param = $this->getRequest()->getParam('id'); // Set up ID Parameter in the get request
         $posts = Mage::getModel('blogmate/blogspot')->getCollection(); // Get collection of blog posts from table
-        $singlePost = $posts->addFieldToFilter('blogpost_id', $param)->getfirstItem(); // Get first item we find that matches the ID
-        return $singlePost; // Return the value for output use
+        $data = $posts->addFieldToFilter('blogpost_id', $param)->getfirstItem(); // Get first item we find that matches the ID
+        return $data; // Return the value for output use.
+    }
+
+    /**
+     * A controller function that handles comments
+     */
+
+    public function viewComments(){
+        // we'll get there eventually
     }
 
 }

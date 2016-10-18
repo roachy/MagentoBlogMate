@@ -3,7 +3,7 @@
 class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Front_Action {
 
     /**
-     * A controller function that dumps all the
+     * A controller function that dumps pretty much everything for a post
      */
 
     public function dumpPostsAction()
@@ -68,7 +68,7 @@ class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Fr
     /**
      * A controller function to delete posts (D)
      */
-    
+
     public function delPostAction()
     {
         $params = $this->getRequest()->getParams();

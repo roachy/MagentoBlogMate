@@ -1,0 +1,36 @@
+<config>
+
+    // Primary Configuration for Helloworld
+    <modules>
+        <Magentotutorial_Blogmate>
+            <version>0.1.0</version>
+        <Magentotutorial_Blogmate/>
+    </modules>
+
+    // Sets the public facing URL
+    <frontend>
+        <routers>
+            <blogmate> // Defines the route name
+                <use>standard</use>
+                <args>
+                    <module>Magentotutorial_Blogmate</module> // Locate the controller files for our module
+                    <frontName>blogmate</frontName> // Set the front name or public facing name
+                </args>
+            </blogmate>
+        </routers>
+    </frontend>
+
+    <global>
+        <models>
+            <blogmate> // This is the group name which should always match the name of the module
+                <class>Magentotutorial_Blogmate_Model</class> // Base name of all the models
+                <resourceModel>blogmate_resource</resourceModel> // The resource model that the Blogmate group should use
+            </blogmate>
+
+            <blogmate_resource>
+                <class>Magentotutorial_Blogmate_Model_Resource</class> // The resource class name
+            </blogmate_resource>
+        </models>
+    </global>
+
+</config>

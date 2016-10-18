@@ -6,7 +6,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function that dumps pretty much everything for a post
      */
 
-    public function dumpPostsAction()
+    public function dumpAction()
     {
         $params = $this->getRequest()->getParams(); // Gets any parameters passed in the URL
         $blog_post = Mage::getModel('blogmate/blogpost'); // Gets our model so we can use methods from said model
@@ -23,7 +23,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function used to create a new post with preset data (C)
      */
 
-    public function createNewPostAction()
+    public function createAction()
     {
         $blog_post = Mage::getModel('blogmate/blogpost'); // Pull the model once more for use in this function
         $blog_post->setTitle('Default'); // Use Varien, set the data to be passed into the title column as Default
@@ -37,7 +37,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function used to view all the posts in the table (R)
      */
 
-    public function viewAllPostsAction()
+    public function viewAllAction()
     {
         $posts = Mage::getModel('blogmate/blogspot')->getCollection(); // Get all the entries in the table (I think?)
 
@@ -53,7 +53,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * param ($id)
      */
 
-    public function editPostAction()
+    public function editAction()
     {
 
         $params = $this->getRequest()->getParams(); // Get any parameters passed through the URL, in this case we need an ID so we can find the post to edit
@@ -70,7 +70,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function to delete posts (D)
      */
 
-    public function delPostAction()
+    public function deleteAction()
     {
         $params = $this->getRequest()->getParams();
         $blog_post = Mage::getModel('blogmate/blogpost');
@@ -82,7 +82,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function to get the count of all our blog posts
      */
 
-    public function postCountAction()
+    public function countAction()
     {
 
         // Get the collection of posts from the table
@@ -91,9 +91,10 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
         if(!count($post_collection))
         {
             echo("Beam me up Scotty, there's nothing here");
-        }else{
-            echo('There are currently'.count($post_collection).' that have been created');
+            exit;
         }
+
+        echo('There are currently'.count($post_collection).' that have been created');
 
     }
 
@@ -101,7 +102,7 @@ class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Fron
      * A controller function used to view a blog post on a fresh page
      */
 
-    public function viewPostAction()
+    public function viewAction()
     {
         $param = $this->getRequest()->getParam('id'); // Set up ID Parameter in the get request
         $posts = Mage::getModel('blogmate/blogspot')->getCollection(); // Get collection of blog posts from table

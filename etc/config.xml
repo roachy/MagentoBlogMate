@@ -1,6 +1,6 @@
 <config>
 
-    // Primary Configuration for Helloworld
+    // Primary Configuration for Blogmate
     <modules>
         <Magentotutorial_Blogmate>
             <version>0.1.0</version>
@@ -31,6 +31,15 @@
                 <class>Magentotutorial_Blogmate_Model_Resource</class> // The resource class name
             </blogmate_resource>
         </models>
+
+        <resources>
+            <blogmate_setup>
+                <setup>
+                    <module>Magentotutorial_Blogmate</module>
+                    <class>Magentotutorial_Blogmate_Model_Resources_Setup</class>
+                </setup>
+            </blogmate_setup>
+        </resources>
     </global>
 
 </config>

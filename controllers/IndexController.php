@@ -1,6 +1,6 @@
 <?php
 
-class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Front_Action {
+class Magentotutorial_Blogmate_IndexController extends Mage_Core_Controller_Front_Action {
 
     /**
      * A controller function that dumps pretty much everything for a post
@@ -42,7 +42,7 @@ class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Fr
 
         foeach($posts as $post){ // Foreach row we find in the database
             echo '<h3>'.$post->getTitle().'</h3>'; // Echo the title into a h3 tag
-            echo nl2br($blogpost->getPost()); // Ask Asif about this function
+            echo $blogpost->getPost(); // Ask Asif about this function
         }
 
     }
@@ -55,12 +55,12 @@ class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Fr
     public function editPostAction()
     {
 
-        $params = $this->getRequest()->getParams(); // Get any parameters passed through the URL
+        $params = $this->getRequest()->getParams(); // Get any parameters passed through the URL, in this case we need an ID so we can find the post to edit
 
         $blog_post = Mage::getModel('blogmate/blogpost');
         $blog_post->load($params['id']); // Load the ID into the model
         $blog_post->setTitle('I need to learn how to pass form values in Magento');
-        $blog_post->save();
+        $blog_post->save(); // Send to DB
 
         echo('Post '.$params['id'].' has been successfully edited');
     }
@@ -77,5 +77,35 @@ class Magentotutorial_Helloworld_IndexController extends Mage_Core_Controller_Fr
         $blog_post->delete();
     }
 
+    /**
+     * A controller function to get the count of all our blog posts
+     */
+
+    public function postCountAction()
+    {
+
+        // Get the collection of posts from the table
+        $post_collection = Mage::getModel('blogmate/blogpost')->getCollection();
+
+        if(!count($post_collection))
+        {
+            echo("There is nothing here! Please <a href='http://example.com/blogmate/index/createNewPost'>create your first post </a>");
+        }else{
+            echo('There are currently'.count($post_collection).' that have been created');
+        }
+
+    }
+
+    /**
+     * A controller function used to view a blog post on a fresh page
+     */
+
+    public function viewPost()
+    {
+        $param = $this->getRequest()->getParam('id'); // Set up ID Parameter in the get request
+        $posts = Mage::getModel('blogmate/blogspot')->getCollection(); // Get collection of blog posts from table
+        $singlePost = $posts->addFieldToFilter('blogpost_id', $param)->getfirstItem(); // Get first item we find that matches the ID
+        return $singlePost; // Return the value for output use
+    }
 
 }

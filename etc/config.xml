@@ -1,6 +1,6 @@
 <config>
 
-    // Primary Configuration for Helloworld
+    // Primary Configuration for Blogmate
     <modules>
         <Magentotutorial_Blogmate>
             <version>0.1.0</version>
@@ -20,6 +20,11 @@
         </routers>
     </frontend>
 
+    <menu>
+        <!-- ... -->
+    </menu>
+
+
     <global>
         <models>
             <blogmate> // This is the group name which should always match the name of the module
@@ -31,6 +36,48 @@
                 <class>Magentotutorial_Blogmate_Model_Resource</class> // The resource class name
             </blogmate_resource>
         </models>
+
+        <resources>
+            <blogmate_setup>
+                <setup>
+                    <module>Magentotutorial_Blogmate</module>
+                    <class>Magentotutorial_Blogmate_Model_Resources_Setup</class>
+                </setup>
+            </blogmate_setup>
+        </resources>
+
+        <helpers>
+            <magentotutorial_blogmate>
+                <class>Magentotutorial_Blogmate_Helper</class>
+            </magentotutorial_blogmate>
+        </helpers>
     </global>
+
+    <!-- Admin html - So we can add things to the admin panel via our module -->
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Magentotutorial_Blogmate after="Mage_Adminhtml">Magentotutorial_Blogmate</Magentotutorial_Blogmate>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <!-- Access Control Levels - Permission to view menu items -->
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <blogmate translate="title" module="magentotutorial_blogmate">
+                        <title> Blogmate Menu Access </title>
+                        <sort_order>1</sort_order>
+                    </blogmate>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 
 </config>
